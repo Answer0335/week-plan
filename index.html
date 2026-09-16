@@ -347,8 +347,9 @@ let editingTplId = null;
 /* ============ Supabase / 本地存储 ============ */
 function getConfig(){try{return JSON.parse(localStorage.getItem('weekplan_config')||'null')}catch(e){return null}}
 function setConfig(c){localStorage.setItem('weekplan_config',JSON.stringify(c))}
+const DEFAULT_CONFIG = {url:'https://fqgpohpavvkobbntizyf.supabase.co', key:'sb_publishable_ytef3va_7ICP9Gwurqx54g_ukeqVhna'};
 function initClient(){
-  const c=getConfig();
+  const c=getConfig() || DEFAULT_CONFIG;
   if(c && c.url && c.key){
     try{supabaseClient = supabase.createClient(c.url, c.key);return true}catch(e){supabaseClient=null}
   }
